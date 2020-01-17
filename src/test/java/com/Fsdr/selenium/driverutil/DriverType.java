@@ -1,7 +1,7 @@
-package com.tech.selenium.driverutil;
+package com.Fsdr.selenium.driverutil;
 
 /**
- * Created by Sridhar Bandi on 5/9/18.
+ * Created by Prakash 21/11/19 .
  */
 public enum DriverType {
 
