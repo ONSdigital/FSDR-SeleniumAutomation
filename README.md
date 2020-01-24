@@ -34,3 +34,4 @@ Or
 mvn test -Dbrowser=firefox
 ```
 > Feel free to modify it to your own needs :)# FSDR-SeleniumAutomation
+# FSDR-SeleniumAutomation
