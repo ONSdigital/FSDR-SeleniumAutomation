@@ -1,13 +1,12 @@
 package com.Fsdr.selenium.pageobjects;
 
-//import jdk.internal.jline.internal.Log;
-import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.NoSuchElementException;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Prakash on 21/11/19.
@@ -15,44 +14,39 @@ import java.util.NoSuchElementException;
  */
 public class FsdrLoginPage extends FsdrBase {
 
-    private WebDriver _driver = null;
+  @FindBy(id = "user")
+  public WebElement username;
 
-    @FindBy(id = "username")
-    public WebElement Uname;
+  @FindBy(name = "password")
+  public WebElement password;
 
-    @FindBy(name = "password")
-    public WebElement Pword;
+  @FindBy(xpath = "/html/body/div/div/form/div/div/div/main/button")
+  public WebElement SignIn;
 
-    @FindBy(className = "button")
-    public WebElement SignIn;
+  private WebDriver webDriver;
 
-    @FindBy(linkText = "Sign out fsss1")
-    public WebElement SignOut;
+  public FsdrLoginPage(WebDriver webDriver) {
+    this.webDriver = webDriver;
+    PageFactory.initElements(this.webDriver, this);
+  }
 
+  public void openURL() {
+    webDriver.get("http://localhost:9293/signin");
+    String title = webDriver.getTitle();
+    assertEquals("FSDR", title);
+  }
 
-    public FsdrLoginPage(WebDriver driver) {
-        this._driver = driver;
-        PageFactory.initElements(_driver, this);
-    }
+  public void enterCredentials() {
+    username.sendKeys("fsss1");
+    password.sendKeys("Testing.1");
+  }
 
-    public void openURL() {
+  public void submitLogin() {
+    SignIn.click();
+  }
 
-        _driver.get("https://blacklodge-fsdrui.census-gcp.onsdigital.uk/signin/");
-    }
-
-    public void login()  {
-        try {
-            Uname.sendKeys("fsss1");
-            Pword.sendKeys("Testing.1");
-            SignIn.click();
-            if (isElementExist(SignOut)) ;
-            {
-                Assert.assertTrue(true);
-
-            }
-
-        } catch (NoSuchElementException e) {
-            e.printStackTrace();
-        }
-    }
+  public void confirmPageOnUserpage() {
+    WebElement element = webDriver.findElement(By.xpath("/html/body/div/div/div[2]/div[2]/div/h1"));
+    assertEquals("Field Force view for: fsss", element.getText());
+  }
 }

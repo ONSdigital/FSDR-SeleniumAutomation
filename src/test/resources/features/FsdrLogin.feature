@@ -7,5 +7,3 @@ Feature: LoginFeature
     And I enter the following Credentials for Login
     Then I click login button
     Then I should see the userform page
-
-

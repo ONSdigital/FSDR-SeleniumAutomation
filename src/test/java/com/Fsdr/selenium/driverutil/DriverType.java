@@ -5,10 +5,10 @@ package com.Fsdr.selenium.driverutil;
  */
 public enum DriverType {
 
-    CHROME,
-    FIREFOX,
-    OPERA,
-    EDGE,
-    IE
+  CHROME,
+  FIREFOX,
+  OPERA,
+  EDGE,
+  IE
 
 }
